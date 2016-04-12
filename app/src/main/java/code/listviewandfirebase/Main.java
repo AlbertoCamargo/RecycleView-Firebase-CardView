@@ -61,7 +61,7 @@ public class Main extends AppCompatActivity
         SharedPreferences shp = PreferenceManager.getDefaultSharedPreferences(this);
         String url = shp.getString("url","https://dazzling-inferno-7735.firebaseio.com/" );
         try {
-            myFirebaseRef = new Firebase(url);    
+            myFirebaseRef = new Firebase(url);
         } catch (Exception e) {
             myFirebaseRef = new Firebase("https://dazzling-inferno-7735.firebaseio.com/");
         }
@@ -141,8 +141,13 @@ public class Main extends AppCompatActivity
             SharedPreferences shp = PreferenceManager.getDefaultSharedPreferences(this);
             String url = shp.getString("url", "https://dazzling-inferno-7735.firebaseio.com/");
             Toast.makeText(this, "URL BD " + url, Toast.LENGTH_LONG).show();
-            myFirebaseRef = new Firebase(url);
-            // Fragment initial
+
+            try {
+                myFirebaseRef = new Firebase(url);
+            } catch (Exception e) {
+                myFirebaseRef = new Firebase("https://dazzling-inferno-7735.firebaseio.com/");
+            }
+
 
 
         }

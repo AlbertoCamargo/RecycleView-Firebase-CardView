@@ -1,5 +1,6 @@
 package code.listviewandfirebase;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -23,9 +24,10 @@ import java.util.Vector;
 public class Index extends Fragment {
 
 
-    Vector<DataSnapshot> values =  new Vector<>();
-    View inflate;
-    ListView listView;
+    static Vector<DataSnapshot> values =  new Vector<>();
+    static View inflate;
+    static ListView listView;
+    static Context context;
 
     @Nullable
     @Override
@@ -40,6 +42,7 @@ public class Index extends Fragment {
                 R.id.tittle,
                 values
         ); */
+        context = getContext();
         fetchData();
         //CustomAdapter customAdapter = new CustomAdapter(getContext(), values);
         //listView.setAdapter(customAdapter);
@@ -48,7 +51,7 @@ public class Index extends Fragment {
 
     }
 
-    public void fetchData() {
+    public static void fetchData() {
         Main.myFirebaseRef.addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -59,7 +62,7 @@ public class Index extends Fragment {
                     values.add(iterator.next());
                 }
 
-                CustomAdapter customAdapter = new CustomAdapter(getContext(), values);
+                CustomAdapter customAdapter = new CustomAdapter(context, values);
                 listView.setAdapter(customAdapter);
 
 

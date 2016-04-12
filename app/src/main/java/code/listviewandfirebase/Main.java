@@ -1,5 +1,6 @@
 package code.listviewandfirebase;
 
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,10 +27,14 @@ import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
+import java.util.Vector;
 
 public class Main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -82,6 +87,8 @@ public class Main extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+
+
             super.onBackPressed();
         }
     }
@@ -119,6 +126,9 @@ public class Main extends AppCompatActivity
             Intent i = new Intent(this, ActivityConfiguration.class);
             startActivityForResult(i, CONFIG_REQUEST_CODE);
 
+
+
+
             return true;
 
         } else if (id == R.id.create) {
@@ -130,7 +140,6 @@ public class Main extends AppCompatActivity
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.main_content, fragment).commit();
-
         return true;
     }
 
@@ -139,15 +148,19 @@ public class Main extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CONFIG_REQUEST_CODE) {
             SharedPreferences shp = PreferenceManager.getDefaultSharedPreferences(this);
-            String url = shp.getString("url", "https://dazzling-inferno-7735.firebaseio.com/");
-            Toast.makeText(this, "URL BD " + url, Toast.LENGTH_LONG).show();
+            String url;
 
             try {
-                myFirebaseRef = new Firebase(url);
+                url = shp.getString("url", "https://dazzling-inferno-7735.firebaseio.com/");
+
             } catch (Exception e) {
-                myFirebaseRef = new Firebase("https://dazzling-inferno-7735.firebaseio.com/");
+               url = "https://dazzling-inferno-7735.firebaseio.com/";
             }
 
+            myFirebaseRef = new Firebase(url);
+
+            Index.fetchData();
+            Toast.makeText(this, "URL BD " + url, Toast.LENGTH_LONG).show();
 
 
         }
@@ -164,7 +177,7 @@ public class Main extends AppCompatActivity
 
         Map<String, Object> item = new HashMap<>();
 
-        item.put("name", message.getText());
+        item.put("name", message.getText().toString());
         myFirebaseRef.push().setValue(item);
 
         message.setText("");

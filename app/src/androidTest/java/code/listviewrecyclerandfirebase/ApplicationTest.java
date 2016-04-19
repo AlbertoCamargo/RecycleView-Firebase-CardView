@@ -1,4 +1,4 @@
-package code.listviewandfirebase;
+package code.listviewrecyclerandfirebase;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

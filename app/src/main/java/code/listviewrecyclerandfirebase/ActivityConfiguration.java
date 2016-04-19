@@ -1,4 +1,4 @@
-package code.listviewandfirebase;
+package code.listviewrecyclerandfirebase;
 
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -6,7 +6,6 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceFragment;
 import android.view.View;
 import android.widget.EditText;
 

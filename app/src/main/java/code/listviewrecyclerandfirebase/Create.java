@@ -1,4 +1,4 @@
-package code.listviewandfirebase;
+package code.listviewrecyclerandfirebase;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

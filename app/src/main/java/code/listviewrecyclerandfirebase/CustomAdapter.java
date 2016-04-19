@@ -1,4 +1,4 @@
-package code.listviewandfirebase;
+package code.listviewrecyclerandfirebase;
 
 import android.content.Context;
 import android.view.LayoutInflater;

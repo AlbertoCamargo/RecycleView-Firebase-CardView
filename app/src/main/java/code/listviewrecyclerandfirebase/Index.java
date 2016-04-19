@@ -1,13 +1,14 @@
-package code.listviewandfirebase;
+package code.listviewrecyclerandfirebase;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.firebase.client.DataSnapshot;
@@ -29,10 +30,21 @@ public class Index extends Fragment {
     static ListView listView;
     static Context context;
 
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         inflate = inflater.inflate(R.layout.index, null);
+
+
+        this.recyclerView = (RecyclerView) inflate.findViewById(R.id.itemsRecyclerView);
+
+        this.mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        this.mRecyclerView.setLayoutManager(mLayoutManager);
+
 
         listView = (ListView) inflate.findViewById(R.id.listView);
 

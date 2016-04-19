@@ -5,9 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.firebase.client.DataSnapshot;
+
+
+import java.util.Vector;
 
 /**
  * Created by Alberto Mario Camargo Castro on 19-Apr-16.
@@ -18,17 +22,19 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView title;
+        public Button delete;
 
         public ViewHolder(View v) {
             super(v);
             title = (TextView) v.findViewById(R.id.tittle);
+            delete = (Button) v.findViewById(R.id.delete);
 
         }
     }
 
-    private ArrayList<String> dataset;
+    private Vector<DataSnapshot> dataset;
 
-    public ItemsAdapter(ArrayList<String> dataset) {
+    public ItemsAdapter(Vector<DataSnapshot> dataset) {
         this.dataset = dataset;
     }
 
@@ -42,7 +48,16 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ItemsAdapter.ViewHolder holder, int position) {
-        holder.title.setText(dataset.get(position));
+        holder.title.setText( dataset.get(position).child("name").getValue().toString());
+
+
+        holder.delete.setFocusableInTouchMode(false);
+        holder.delete.setFocusable(false);
+        holder.delete.setTag(dataset.get(position));
+
+
+
+
     }
 
     @Override

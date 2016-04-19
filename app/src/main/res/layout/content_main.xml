@@ -14,10 +14,12 @@
     tools:showIn="@layout/app_bar_main">
 
     <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/itemsRecyclerView"
         android:scrollbars="vertical"
-        android:layout_margin="6dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_margin="6dp"/>
+
+
 
 </RelativeLayout>

@@ -139,10 +139,10 @@ public class Main extends AppCompatActivity
             String url;
 
             try {
-                url = shp.getString("url", "https://dazzling-inferno-7735.firebaseio.com/");
+                url = shp.getString("url", "moviltest.firebaseio.com/");
 
             } catch (Exception e) {
-               url = "https://dazzling-inferno-7735.firebaseio.com/";
+               url = "https://moviltest.firebaseio.com/";
             }
 
             myFirebaseRef = new Firebase(url);

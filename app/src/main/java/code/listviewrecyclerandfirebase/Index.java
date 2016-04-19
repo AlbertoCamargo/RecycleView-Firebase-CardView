@@ -35,7 +35,7 @@ public class Index extends Fragment {
 
     public static RecyclerView recyclerView;
     public static RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
+    public static RecyclerView.LayoutManager layoutManager;
 
     @Nullable
     @Override
@@ -94,7 +94,8 @@ public class Index extends Fragment {
                     values.add(iterator.next());
                 }
 
-
+                recyclerView = (RecyclerView) inflate.findViewById(R.id.itemsRecyclerView);
+                recyclerView.setLayoutManager(layoutManager);
                 adapter = new ItemsAdapter(values);
                 recyclerView.setAdapter(adapter);
 
